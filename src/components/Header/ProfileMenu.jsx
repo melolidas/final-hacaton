@@ -5,6 +5,9 @@ import MenuItem from "@mui/material/MenuItem";
 import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
 import AccountCircleRoundedIcon from "@mui/icons-material/AccountCircleRounded";
 import "./styles.css";
+import Modal from "../Modal/Modal";
+import RegisterModal from "../Modal/RegisterModal";
+import CardModal from "../Modal/CardModal";
 
 export default function BasicMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -15,7 +18,24 @@ export default function BasicMenu() {
   const handleClose = () => {
     setAnchorEl(null);
   };
-
+  const [isModalOpen, setIsModalOpen] = React.useState(false);
+  const [isCardModal, setIsCardModal] = React.useState(false);
+  const [isRegModalOpen, setRegModalOpen] = React.useState(false);
+  const openRegModal = () => {
+    setRegModalOpen(true);
+  };
+  const openCardModal = () => {
+    setIsCardModal(true);
+  };
+  const closeRegModal = () => {
+    setRegModalOpen(false);
+  };
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
   return (
     <div>
       <div
@@ -45,29 +65,20 @@ export default function BasicMenu() {
           },
         }}
       >
-        <MenuItem className="menu-items" onClick={handleClose}>
+        <MenuItem onClick={openModal} className="menu-items">
           Signup
         </MenuItem>
-        <MenuItem onClick={handleClose} className="menu-items">
+        <MenuItem onClick={openRegModal} className="menu-items">
           Login
         </MenuItem>
-        <div
-          style={{
-            height: "1px",
-            backgroundColor: "var(--grey)",
-            width: "100%",
-          }}
-        />
-        <MenuItem onClick={handleClose} className="menu-items">
-          Airbnb Your Home
-        </MenuItem>
-        <MenuItem onClick={handleClose} className="menu-items">
-          Host an experience
-        </MenuItem>
-        <MenuItem onClick={handleClose} className="menu-items">
-          Help
+        <MenuItem onClick={openCardModal} className="menu-items">
+          Add cart
         </MenuItem>
       </Menu>
+      {isRegModalOpen && <Modal closeModal={closeModal} />}{" "}
+      {isModalOpen && <RegisterModal closeModal={closeModal} />}
+      {isCardModal && <CardModal closeModal={closeModal} />}
+      {""}
     </div>
   );
 }
