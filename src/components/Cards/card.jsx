@@ -6,6 +6,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Pagination, Navigation } from "swiper";
+import { Link } from "react-router-dom";
 
 function Card({ card }) {
   return (
@@ -27,7 +28,10 @@ function Card({ card }) {
         ))}
       </Swiper>
       <div className="card-info-flex">
-        <h3 className="card-title">{card.title}</h3>
+        <Link to="/listing">
+          <h3 className="card-title">{card.title}</h3>
+        </Link>
+
         <div className="card-rating">
           <StarRateRoundedIcon />
           <p>{card.rating}</p>
