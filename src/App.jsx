@@ -1,18 +1,12 @@
-import "./App.css";
-import Filter from "./components/Filter";
-import Header from "./components/Header";
-import { Provider } from "react-redux";
-import { store } from "./store/store";
-
-function App() {
+import React from "react";
+import ProfileMenu from "../src/components/Header/ProfileMenu";
+import MainRoutes from "../src/routes/MainRoutes";
+const App = () => {
   return (
-    <div className="App">
-      <Provider store={store}>
-        <Header />
-        <Filter />
-      </Provider>
+    <div>
+      <MainRoutes />
     </div>
   );
-}
+};
 
 export default App;
